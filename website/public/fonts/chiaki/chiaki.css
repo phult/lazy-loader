@@ -1,0 +1,260 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+
+
+/* 
+    Created on : April 11, 2016, 9:00:01 AM
+    Author     : Manh Ha Hoang
+*/
+
+@font-face {
+    font-family: 'chiaki';
+    src: url('chiaki.eot?9tccdw');
+    src: url('chiaki.eot?#iefix9tccdw') format('embedded-opentype'), url('chiaki.ttf?9tccdw') format('truetype'), url('chiaki.woff?9tccdw') format('woff'), url('chiaki.svg?9tccdw#Hotdeal') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.chiaki {
+    display: inline-block;
+    font-family: 'chiaki';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.chiaki-lg {
+  font-size: 1.33333333em;
+  line-height: 0.75em;
+  vertical-align: -15%;
+}
+.chiaki-1x {
+  font-size: 1.5em;
+}
+.chiaki-2x {
+  font-size: 2em;
+}
+.chiaki-3x {
+  font-size: 3em;
+}
+.chiaki-4x {
+  font-size: 4em;
+}
+.chiaki-5x {
+  font-size: 5em;
+}
+
+.chiaki-ems:before {
+    content: "\e903";
+}
+
+.chiaki-cong-nghe:before {
+    content: "\e801";
+}
+
+.chiaki-me-be:before {
+    content: "\e802";
+}
+
+.chiaki-my-pham:before {
+    content: "\e803";
+}
+
+.chiaki-phu-kien:before {
+    content: "\e804";
+}
+
+.chiaki-san-pham:before {
+    content: "\e805";
+}
+
+.chiaki-thuc-pham:before {
+    content: "\e806";
+}
+
+.chiaki-tt-nu:before {
+    content: "\e807";
+}
+
+.chiaki-tt-treem:before {
+    content: "\e808";
+}
+
+.chiaki-beauty:before {
+    content: "\e60a";
+}
+
+.chiaki-entertainment:before {
+    content: "\e60b";
+}
+
+.chiaki-fashion:before {
+    content: "\e60c";
+}
+
+.chiaki-product:before {
+    content: "\e60d";
+}
+
+.chiaki-restaurant:before {
+    content: "\e60e";
+}
+
+.chiaki-travel:before {
+    content: "\e60f";
+}
+
+.chiaki-sort:before {
+    content: "\e800";
+}
+
+.chiaki-order:before {
+    content: "\e625";
+}
+
+.chiaki-total:before {
+    content: "\e626";
+}
+
+.chiaki-back:before {
+    content: "\e621";
+}
+
+.chiaki-calendar:before {
+    content: "\e622";
+}
+
+.chiaki-tick:before {
+    content: "\e623";
+}
+
+.chiaki-x:before {
+    content: "\e624";
+}
+
+.chiaki-lock:before {
+    content: "\e620";
+}
+
+.chiaki-user:before {
+    content: "\e607";
+}
+
+.chiaki-star-o:before {
+    content: "\e61a";
+}
+
+.chiaki-price:before {
+    content: "\e61b";
+}
+
+.chiaki-area:before {
+    content: "\e61c";
+}
+
+.chiaki-location:before {
+    content: "\e61d";
+}
+
+.chiaki-list:before {
+    content: "\e61e";
+}
+
+.chiaki-sort-arrow:before {
+    content: "\e61f";
+}
+
+.chiaki-cart:before {
+    content: "\e612";
+}
+
+.chiaki-minus:before {
+    content: "\e614";
+}
+
+.chiaki-plus:before {
+    content: "\e615";
+}
+
+.chiaki-evoucher:before {
+    content: "\e616";
+}
+
+.chiaki-ticket:before {
+    content: "\e619";
+}
+
+.chiaki-star:before {
+    content: "\e617";
+}
+
+.chiaki-clock:before {
+    content: "\e618";
+}
+
+.chiaki-share:before {
+    content: "\e613";
+}
+
+.chiaki-map-marker:before {
+    content: "\e610";
+}
+
+.chiaki-arr-down-square:before {
+    content: "\e600";
+}
+
+.chiaki-arrow-down:before {
+    content: "\e601";
+}
+
+.chiaki-icon-circle:before {
+    content: "\e602";
+}
+
+.chiaki-angle-double-right:before {
+    content: "\e603";
+}
+
+.chiaki-newsletter:before {
+    content: "\e604";
+}
+
+.chiaki-search:before {
+    content: "\e605";
+}
+
+.chiaki-shipping:before {
+    content: "\e606";
+}
+
+.chiaki-gps:before {
+    content: "\e608";
+}
+
+.chiaki-email:before {
+    content: "\e609";
+}
+
+.chiaki-angle-down:before {
+    content: "\e611";
+}
+
+.chiaki-nav:before {
+    content: "\e900";
+}
+
+.chiaki-remove:before {
+    content: "\e901";
+}
+
+.chiaki-sort2:before {
+    content: "\e902";
+}
