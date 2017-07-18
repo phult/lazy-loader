@@ -16,7 +16,7 @@
                 <div class="js-navbar-collapse collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
                         <li><a class="frist-menu" href="/">Home</a></li>
-                        <li><a class="frist-menu" href="/">Trend</a></li>
+                        <li><a class="frist-menu" href="/">Trends</a></li>
                         <li><a class="frist-menu" href="/">Latest</a></li>
                         <li><a class="frist-menu" href="/">How It Work</a></li>
                         <li><a class="frist-menu" href="/">About Us</a></li>
@@ -28,7 +28,7 @@
                         <input type="hidden" name="search_param" value="all" id="search_param">
                         <input type="text" name="q" class="form-control key-word" placeholder="Search..." autocomplete="off">
                         <span class="input-group-btn">
-                            <button class="btn btn-default" type="button"><i class="fa fa-arrow-right"></i></button>
+                            <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
                         </span>
                     </div>
                     <ul class="results" id="search-suggestion">

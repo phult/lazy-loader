@@ -354,9 +354,9 @@ main
     /* padding: 15px 0 35px; */
 }
 .bucket-title {
-    font-size: 18px;
+    font-size: 24px;
     /*text-transform: uppercase;*/
-    font-weight: normal;
+    font-weight: bold;
     color: #ec1f27;
 }
 
@@ -366,7 +366,7 @@ main
     height:145px;
 }
 .news-container  .items-block-img {
-    height: 240px
+    height: 160px
 }
 .talk-article   .items-block-img {
     height: 250px;
@@ -389,10 +389,12 @@ main
     text-align: center;
 }
 .item-content-title a {
-    color: #d07585;
+    color: #000;
+    font-weight: bold;
 }
 .feature-article-item {
     margin-bottom: 30px;
+    text-align: center;
 }
 .feature-article-item img {
     transition: all 200ms ease-out;
@@ -550,8 +552,19 @@ aside .block-title span {
     color: rgba(255,255,255,1);
 }
 
+.talk-news {
+    margin-bottom: 5px;
+    /*height: 80px;
+    overflow: hidden;*/
+}
+.talk-news a {
+    color: black;
+}
 .talk-news .media + .media {
-    margin-top: 15px;
+    /*margin-top: 15px;*/
+}
+.talk-news .media {
+    margin-bottom: 5px;
 }
 
 /*======================================

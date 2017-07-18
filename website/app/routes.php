@@ -12,4 +12,4 @@
 */
 
 Route::get("/", ["as" => "home:index", "uses" => "HomeController@index"]);
-//Route::get("/", [array("as" => "home:index", "uses" => "HomeController@index")]);
+Route::get("/post", ["as" => "post:view", "uses" => "HomeController@index"]);

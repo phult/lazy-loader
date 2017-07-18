@@ -2,7 +2,7 @@
     if (isset($posts) && count($posts) > 0) {
         ?>
         <div class=" feature-article-container">
-            <h2 class="bucket-title container-fluid"><span>Hot posts</span></h2>
+            <h2 class="bucket-title container-fluid"><span>Trends</span></h2>
             <div class="feature-article-box">
                 <?php
                     foreach ($posts as $item) {
