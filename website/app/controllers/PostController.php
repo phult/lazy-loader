@@ -30,17 +30,15 @@ class PostController extends BaseController {
 		]);
 	}
 	private function getHotPosts($pageSize = 10) {
-		return Post::orderBy('post_time', 'DESC')
-			->whereNotNull('content')->where('content', '<>', '')
-			->whereNotNull('images')->where('images', '<>', '')
+		return Post::orderBy('comment_number', 'DESC')
+			->where('content_words', '>', 0)
 			->offset(0)->limit($pageSize)->get();
 	}
 	private function getSugessionPosts($post, $pageSize = 4) {
 		return Post::where('page_id', '=', $post->page->id)
 			->where('id', '<>', $post->id)
 			->orderBy('post_time', 'DESC')
-			->whereNotNull('content')->where('content', '<>', '')
-			->whereNotNull('images')->where('images', '<>', '')
+			->where('content_words', '>', 0)
 			->offset(0)->limit($pageSize)->get();
 	}
 }
