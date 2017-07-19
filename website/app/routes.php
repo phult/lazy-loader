@@ -11,5 +11,6 @@
 |
 */
 
-Route::get("/", ["as" => "home:index", "uses" => "HomeController@index"]);
-Route::get("/post", ["as" => "post:view", "uses" => "HomeController@index"]);
+Route::get("/", ["as" => "post:feed", "uses" => "PostController@feed"]);
+Route::get("/{postSlug}-c{postId}", ["as" => "post:view", "uses" => "PostController@view"])->where('postSlug', '[0-9a-zA-Z/_\-]+')->where('postId', '[0-9]+');
+Route::get("/trends", ["as" => "home:index", "uses" => "HomeController@index"]);

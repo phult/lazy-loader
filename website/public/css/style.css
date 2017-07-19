@@ -17,7 +17,7 @@ body {
 
 header a {
     color: black;
-    font-weight: bold;
+    /*font-weight: bold;*/
 }
 #darkness {
     display: none;
@@ -354,10 +354,10 @@ main
     /* padding: 15px 0 35px; */
 }
 .bucket-title {
-    font-size: 24px;
+    font-size: 14px;
     /*text-transform: uppercase;*/
     font-weight: bold;
-    color: #ec1f27;
+    /*color: #ec1f27;*/
 }
 
 .feature-article-box .items-block-img {
@@ -422,17 +422,24 @@ main
     font-size: 12px;;
     margin: 5px auto 0;
 }
+.publish span {
+    margin-right: 8px;
+}
 .publish i {
     font-size: 85%;
-    margin-right: 5px;
+    /*margin-right: 5px;*/
     line-height: 0em;
+}
+.post-entry {
+    margin-top: 5px;
 }
 .post-entry h1 {
     font-size: 23px;
 }
 [role="user-action"] span + span:before {
-    content: "|";
-    color: #999;
+    /*content: "|";
+    color: #999;*/
+
 }
 .content {
     text-align: justify;
@@ -558,13 +565,38 @@ aside .block-title span {
     overflow: hidden;*/
 }
 .talk-news a {
+
+}
+a.link {
+    font-size: 13px;
+    color: #0dd3bb;
+}
+a.time {
+    font-size: 13px;
+    color: #a5a4a4;
+}
+a.title {
     color: black;
 }
 .talk-news .media + .media {
     /*margin-top: 15px;*/
 }
 .talk-news .media {
-    margin-bottom: 5px;
+    padding-bottom: 8px;
+    padding-top: 8px;
+    border-bottom: 1px solid #efefed;
+}
+.title-separator {
+    color: #ccccca;
+}
+.title-separator:after {
+    content: '\25CF';
+    margin: 0 4px;
+    font-size: .6em;
+    vertical-align: middle;
+    display: inline-block;
+    position: relative;
+    top: -1px;
 }
 
 /*======================================
@@ -608,4 +640,17 @@ footer
     -moz-transition: all 350ms ease-out;
     -o-transition: all 350ms ease-out;
     transition: all 350ms ease-out
+}
+.gallery {
+    text-align: center;vertical-align: middle;
+}
+.gallery span {
+    vertical-align: middle;
+    line-height:normal;
+    display: inline-block;
+}
+.gallery img {
+    margin: auto;
+    width: 80%;
+    vertical-align: middle;
 }

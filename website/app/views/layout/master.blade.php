@@ -15,6 +15,8 @@ and open the template in the editor.
         <?= HTML::style('css/bootstrap.css?v=' . Config::get("app.version")); ?>
         <?= HTML::style('css/style.css?v=' . Config::get("app.version")); ?>
         <?= HTML::style('css/responsive.css?v=' . Config::get("app.version")); ?>
+        <?= HTML::style('slick/slick.css'); ?>
+        <?= HTML::style('slick/slick-theme.css'); ?>
         <!--[if lt IE 9]>
         <script src="js/html5.js"></script>
         <![endif]-->
@@ -29,7 +31,22 @@ and open the template in the editor.
             <span class="glyphicon glyphicon-arrow-up"></span>
         </a>
         <div class="clearfix"></div>
-        <?= HTML::script('js/jquery.js?v=' . Config::get("app.version")); ?>
+        <?= HTML::script('js/jquery.js'); ?>
+        <?= HTML::script('slick/slick.min.js'); ?>
         <?= HTML::script('js/bootstrap.js?v=' . Config::get("app.version")); ?>
         <?= HTML::script('js/script.js?v=' . Config::get("app.version")); ?>
+        <script>
+        	$(document).ready(function () {
+        		$('.gallery').slick({
+                    dots: true,
+                    infinite: false,
+                    speed: 300,
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    autoplay: true,
+                    autoplaySpeed: 500000,
+                    centerMode: true
+                });
+        	});
+        </script>
 </html>
