@@ -5,22 +5,23 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class Post extends Eloquent{
+class Action extends Eloquent{
 
 	public $timestamps = false;
 	protected $guarded = array("id");
+	protected $fillable = array(
+		'type',
+		'object_type',
+		'object_id',
+		'target_type',
+		'target_id',
+		'create_time'
+	);
 	/**
 	 * The database table used by the model.
 	 *
 	 * @var string
 	 */
-	protected $table = 'post';
+	protected $table = 'action';
 
-	public function page() {
-		return $this->belongsTo('Page');
-	}
-
-	public function comments() {
-        return $this->hasMany('Comment', 'post_id');
-    }
 }

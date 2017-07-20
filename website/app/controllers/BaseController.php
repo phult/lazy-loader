@@ -40,7 +40,7 @@ class BaseController extends Controller {
 		return $posts;
 	}
 
-	public static function collageString($str, $limitedWord) {
+	public function collageString($str, $limitedWord) {
         if (strlen($str) > $limitedWord) {
             $temp = substr($str, 0, $limitedWord);
             if (strrpos($temp, " ")) {
@@ -51,4 +51,26 @@ class BaseController extends Controller {
             return $str;
         }
     }
+
+	public function action($data) {
+		Action::create($data);
+	}
+
+	protected function viewPost($postId) {
+		$this->action([
+			'type' => 'view',
+			'object_type' => 'guest',
+			'object_id' => Session::get('guest_id'),
+			'target_type' => 'post',
+			'target_id' => $postId,
+			'create_time' => new DateTime()
+		]);
+	}
+
+	protected function getViewedPosts() {
+		return Action::where('object_id', '=', Session::get('guest_id'))
+			->where('target_type', '=', 'post')
+			->where('type', '=', 'view')
+			->get(['target_id'])->toArray();
+	}
 }
