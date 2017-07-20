@@ -5,7 +5,7 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class Post extends Eloquent{
+class Comment extends Eloquent{
 
 	public $timestamps = false;
 	protected $guarded = array("id");
@@ -14,13 +14,9 @@ class Post extends Eloquent{
 	 *
 	 * @var string
 	 */
-	protected $table = 'post';
+	protected $table = 'comment';
 
-	public function page() {
-		return $this->belongsTo('Page');
-	}
-
-	public function comments() {
-        return $this->hasMany('Comment', 'post_id');
+	public function replies(){
+        return $this->hasMany('Comment', 'parent_id');
     }
 }

@@ -1,5 +1,5 @@
 @extends("layout.master")
-@section("title","Post detail")
+@section("title","$post->title  | Lazyload.net")
 @section("content")
 <section class="content-full main-content">
 	<article class="post-entry col-sm-8" itemscope="" itemtype="https://schema.org/Article">
@@ -44,17 +44,37 @@
 				<?php
 			}
 			?>
-			<p class="publish" style="padding: 20px 0 10px 0">
-				<span><i class="fa fa-thumbs-o-up"></i> <?= $post->comment_number; ?> likes</span>
-				<span><i class="fa fa-commenting"></i> <?= $post->comment_number; ?> comments</span>
-				<span><i class="fa fa-eye"></i> <?= $post->comment_number; ?> views</span>
-			</p>
 			<p>
 				<?= nl2br($post->content); ?>
+			</p>
+			<p class="publish">
+				<span><i class="fa fa-thumbs-o-up"></i> <?= $post->comment_number; ?> likes</span>
+				<span id="comment-btn<?= $post->comment_number > 0 ? '' : '-disabled'; ?>" class="link" style="cursor: pointer"><i class="fa fa-commenting"></i> <?= $post->comment_number; ?> comments</span>
+				<span><i class="fa fa-eye"></i> <?= $post->comment_number; ?> views</span>
 			</p>
 		</div>
 	</article>
 	<div class="clearfix"></div>
+	<?php echo View::make('/component/post/comment-list', ['comments' => $post->comments]); ?>
+	<div class="clearfix"></div>
 	<?php echo View::make('/component/post/post-list', ['title' => 'Suggestions', 'posts' => $suggestionPosts]); ?>
 </section>
+<?= HTML::script('slick/slick.min.js'); ?>
+<script>
+	$(document).ready(function () {
+		$('.gallery').slick({
+			dots: true,
+			infinite: false,
+			speed: 300,
+			slidesToShow: 1,
+			slidesToScroll: 1,
+			autoplay: true,
+			autoplaySpeed: 500000,
+			centerMode: true
+		});
+		$("#comment-btn").click(function() {
+			$("#comment").toggle();
+		});
+	});
+</script>
 @stop
