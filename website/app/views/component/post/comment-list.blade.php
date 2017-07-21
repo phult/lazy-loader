@@ -12,7 +12,7 @@
                     <div class="media-left">
                         <a class="title" title="<?= $comment->name; ?>">
                             <span style="display: block">
-                                <img src="<?= $comment->avatar; ?>" alt="<?= $comment->name; ?>" style="width: 50px">
+                                <img src="<?= $comment->avatar; ?>" alt="<?= $comment->name; ?>" style="width: 20px">
                             </span>
                         </a>
                     </div>
