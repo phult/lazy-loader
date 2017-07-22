@@ -54,8 +54,10 @@ class PostController extends BaseController {
 			->offset(0)->limit($pageSize)->get();
 	}
 	private function getHistoryPosts($pageSize = 10) {
-		return Post::whereIn('id', $this->getViewedPosts())
-			->orderBy('id', 'DESC')
-			->offset(0)->limit($pageSize)->get();
+		return Post::join('action', 'action.target_id', '=', 'post.id')
+			->where('action.object_id', '=', $this->getUserId())
+			->where('action.type', '=', 'view')
+			->orderBy('action.create_time', 'DESC')
+			->offset(0)->limit($pageSize)->get(['post.*']);
 	}
 }

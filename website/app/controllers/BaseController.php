@@ -60,7 +60,7 @@ class BaseController extends Controller {
 		$this->action([
 			'type' => 'view',
 			'object_type' => 'guest',
-			'object_id' => Session::get('guest_id'),
+			'object_id' => $this->getUserId(),
 			'target_type' => 'post',
 			'target_id' => $postId,
 			'create_time' => new DateTime()
@@ -68,9 +68,13 @@ class BaseController extends Controller {
 	}
 
 	protected function getViewedPosts() {
-		return Action::where('object_id', '=', Session::get('guest_id'))
+		return Action::where('object_id', '=', $this->getUserId())
 			->where('target_type', '=', 'post')
 			->where('type', '=', 'view')
 			->get(['target_id'])->toArray();
+	}
+
+	protected function getUserId() {
+		return $_COOKIE['UCID'];
 	}
 }

@@ -24,7 +24,8 @@ and open the template in the editor.
     <body>
         <?= HTML::script('js/jquery.js'); ?>
         <?= HTML::script('js/bootstrap.js?v=' . Config::get("app.version")); ?>
-        <?= HTML::script('js/script.js?v=' . Config::get("app.version")); ?>
+        <?= HTML::script('js/ui.js?v=' . Config::get("app.version")); ?>
+        <?= HTML::script('js/main.js?v=' . Config::get("app.version")); ?>
         <?php echo View::make('/layout/header') ?>
         <main role="main" id="main">
             @yield("content")
