@@ -3,6 +3,11 @@
         <h2 class="bucket-title"><span><?= $title; ?></span></h2>
         <div class="talk-news row">
             <?php
+            if (count($posts) == 0) {
+                ?>
+                <img src="/images/empty_message.png" style="width:100%">
+                <?php
+            }
             foreach ($posts as $post) {
             ?>
                 <div class="media col-sm-6">
