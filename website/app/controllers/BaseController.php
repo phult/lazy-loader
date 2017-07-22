@@ -75,6 +75,13 @@ class BaseController extends Controller {
 	}
 
 	protected function getUserId() {
-		return $_COOKIE['UCID'];
+		$retval = null;
+		if (isset($_COOKIE['UCID'])) {
+			$retval = $_COOKIE['UCID'];
+		} else {
+			$retval = hexdec(uniqid());
+			setcookie( "UCID", $retval, time() + 60 * 60 * 24 * 1000, "/") ;
+		}
+		return $retval;
 	}
 }

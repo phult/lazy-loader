@@ -1,10 +1,4 @@
-var UCID = getCookie("UCID");
-if (UCID == null) {
-    UCID = makeId(9);
-    setCookie("UCID", UCID, 1000);
-}
-
-function makeId(length) {
+function generateId(length) {
     var retval = "";
     var possible = "0123456789";
     for (var i = 0; i < length; i++)
@@ -13,8 +7,8 @@ function makeId(length) {
     return retval;
 }
 
-function getCookie(name) {
-    var retval = null;
+function getCookie(name, defaultValue) {
+    var retval = defaultValue;
     var name = name + "=";
     var ca = document.cookie.split(';');
     for (var i = 0; i < ca.length; i++) {

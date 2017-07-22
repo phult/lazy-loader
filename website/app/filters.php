@@ -12,19 +12,10 @@
 */
 
 App::before(function($request) {
-	if (!Session::has('guest_id')) {
-		$guestId = hexdec(uniqid());
-		Session::put('guest_id', $guestId);
-	}
-    if (Cookie::get('guestId') == null) {
-		$guestId = hexdec(uniqid());
-        Cookie::forever('guestId', $guestId);
-    }
 });
 
 
 App::after(function($request, $response) {
-	//
 });
 
 /*
