@@ -57,7 +57,11 @@
 	<div class="clearfix"></div>
 	<?php echo View::make('/component/post/comment-list', ['comments' => $post->comments]); ?>
 	<div class="clearfix"></div>
-	<?php echo View::make('/component/post/post-list', ['title' => 'Suggestions', 'posts' => $suggestionPosts]); ?>
+	<?php echo View::make('/component/post/post-list', [
+		'title' => 'Suggestions',
+		'type' => 'suggestion',
+		'posts' => $suggestionPosts
+	]); ?>
 </section>
 <?= HTML::script('slick/slick.min.js'); ?>
 <script>

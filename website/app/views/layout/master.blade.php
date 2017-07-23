@@ -31,9 +31,6 @@ and open the template in the editor.
             @yield("content")
         </main>
         <!--?php echo View::make('/layout/footer') ?-->
-        <a href="javascript:void(0);" onclick="$('html, body').animate({scrollTop: $('html,body').offset().top}, 700);" id="back-to-top">
-            <span class="glyphicon glyphicon-arrow-up"></span>
-        </a>
         <div class="clearfix"></div>
     </body>
 </html>
