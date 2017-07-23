@@ -1,15 +1,11 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/*
-    Created on : Mar 30, 2016, 3:08:35 PM
-    Author     : Manh Ha Hoang
-*/
-
-/*Include font*/
-
+/*Overide Bootstrap*/
+.btn, .navbar-default .nav>li>a {
+    font-family: Lato,Helvetica,Arial,sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 11px;
+    color: black;
+}
 
 body {
     margin: 0 auto;
@@ -179,7 +175,7 @@ a:hover, a:active, a:focus {
 nav {
     -moz-box-align: start;
     align-items: flex-start;
-    display: flex;
+    /*display: flex;*/
     flex-wrap: wrap;
 }
 #myNavbar {
@@ -351,6 +347,7 @@ nav {
 main
 ======================================*/
 #main {
+    margin-top: 65px;
     /* padding: 15px 0 35px; */
 }
 .bucket-title {
@@ -582,6 +579,7 @@ a.title {
     /*margin-top: 15px;*/
 }
 .talk-news .media {
+    margin-top: 0;
     padding-bottom: 8px;
     padding-top: 8px;
     border-bottom: 1px solid #efefed;

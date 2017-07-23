@@ -35,4 +35,5 @@ and open the template in the editor.
             <span class="glyphicon glyphicon-arrow-up"></span>
         </a>
         <div class="clearfix"></div>
+    </body>
 </html>

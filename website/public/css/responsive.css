@@ -32,17 +32,9 @@ and open the template in the editor.
         flex: auto;
         margin: 15px;
     }
-    #myNavbar .dropdown-menu {
-        top: 50px;
-    }
 
 }
 @media screen and (min-width:768px) {
-    #myNavbar li,
-    #myNavbar .dropup,
-    #myNavbar .dropdown {
-        position: static;
-    }
 }
 @media screen and (max-width:768px) {
     .content-full {
@@ -67,9 +59,6 @@ and open the template in the editor.
     #footer-site {
         text-align: center;
     }
-    .navbar-brand {
-        margin-left: 30px;
-    }
     body {
         /*padding-top: 80px;*/
     }
@@ -80,16 +69,6 @@ and open the template in the editor.
         left: 0;
         width: 100%;
         z-index: 90;
-    }
-    #myNavbar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 75%;
-        height: 100%;
-        z-index: 99;
-        background: #111;
-        display: block!important;
     }
     .darkness {
         background: rgba(0, 0, 0, 0.7);
@@ -117,31 +96,6 @@ and open the template in the editor.
         opacity: 1;
     }
 
-    #myNavbar, .darkness, .darkness .close {
-        -webkit-transform: translateX(-100%);
-        -ms-transform: translateX(-100%);
-        transform: translateX(-100%);
-
-        -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, .175);
-        box-shadow: 0  2px 4px rgba(0, 0, 0, .175);
-
-        transition: all 200ms ease-out;
-        -webkit-transition: all 200ms ease-out;
-        -ms-transition: all 200ms ease-out;
-    }
-    #myNavbar li {
-        position: relative;
-    }
-    #myNavbar a.frist-menu {
-        color: #fff!important
-    }
-    #myNavbar h3 {
-        color: rgba(255,255,255,0.8);
-        margin: 10px auto 5px;
-    }
-    .navbar-nav .open .dropdown-menu {
-        padding-top: 0;
-    }
     .mega-dropdown-menu {
         border-left: 2px solid rgba(255,255,255,0.7)!important;
         padding: 0px;
