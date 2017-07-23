@@ -16,17 +16,26 @@ class PostController extends BaseController {
 	*/
 
 	public function feed() {
-		$posts = $this->buildPosts($this->getHotPosts());
+		$feedPosts = $this->buildPosts($this->getFeedPosts());
 		return View::make('feed', [
-			'posts' => $posts,
+			'posts' => $feedPosts,
 		]);
 	}
+
 	public function history() {
-		$posts = $this->buildPosts($this->getHistoryPosts());
+		$viewedPosts = $this->buildPosts($this->getHistoryPosts());
 		return View::make('history', [
-			'posts' => $posts,
+			'posts' => $viewedPosts,
 		]);
 	}
+
+	public function latest() {
+		$latestPosts = $this->buildPosts($this->getLatestPosts());
+		return View::make('latest', [
+			'posts' => $latestPosts,
+		]);
+	}
+
 	public function view($postSlug, $postId) {
 		$post = Post::find($postId);
 		if ($post != null) {
@@ -39,25 +48,72 @@ class PostController extends BaseController {
 			'suggestionPosts' => $suggestionPosts
 		]);
 	}
-	private function getHotPosts($pageSize = 10) {
+
+	public function loadMore() {
+		$retval = [
+			'status' => 'successful'
+		];
+		$result = '';
+		$posts = [];
+		$type = Input::get('type', 'feed');
+		$pageId = Input::get('page', 0);
+		switch ($type) {
+			case 'feed': {
+				$posts = $this->getFeedPosts($pageId);
+				break;
+			}
+			case 'latest': {
+				$posts = $this->getLatestPosts($pageId);
+				break;
+			}
+			case 'history': {
+				$posts = $this->getHistoryPosts($pageId);
+				break;
+			}
+			default:
+				$retval['status'] = 'fail';
+				break;
+		}
+		$posts = $this->buildPosts($posts);
+		foreach ($posts as $post) {
+			$view = View::make('/component/post/post-item', ['post' => $post]);
+			$result .= $view->render();
+		}
+		$retval['result'] = $result;
+		return Response::json($retval);
+	}
+
+	public function template() {
+		return View::make('template');
+	}
+
+	private function getFeedPosts($pageId = 0, $pageSize = 10) {
 		return Post::whereNotIn('id', $this->getViewedPosts())
 			->where('content_words', '>', 0)
 			->orderBy('id', 'DESC')
-			->offset(0)->limit($pageSize)->get();
+			->offset($pageId * $pageSize)->limit($pageSize)->get();
 	}
-	private function getSugessionPosts($post, $pageSize = 4) {
+
+	private function getLatestPosts($pageId = 0, $pageSize = 10) {
+		return Post::whereNotIn('id', $this->getViewedPosts())
+			->where('content_words', '>', 0)
+			->orderBy('post_time', 'DESC')
+			->offset($pageId * $pageSize)->limit($pageSize)->get();
+	}
+
+	private function getSugessionPosts($post, $pageId = 0, $pageSize = 6) {
 		return Post::where('page_id', '=', $post->page->id)
 			->whereNotIn('id', $this->getViewedPosts())
 			->where('id', '<>', $post->id)
 			->orderBy('post_time', 'DESC')
 			->where('content_words', '>', 0)
-			->offset(0)->limit($pageSize)->get();
+			->offset($pageId * $pageSize)->limit($pageSize)->get();
 	}
-	private function getHistoryPosts($pageSize = 10) {
+	private function getHistoryPosts($pageId = 0, $pageSize = 10) {
 		return Post::join('action', 'action.target_id', '=', 'post.id')
 			->where('action.object_id', '=', $this->getUserId())
 			->where('action.type', '=', 'view')
 			->orderBy('action.create_time', 'DESC')
-			->offset(0)->limit($pageSize)->get(['post.*']);
+			->offset($pageId * $pageSize)->limit($pageSize)->get(['post.*']);
 	}
 }

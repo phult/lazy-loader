@@ -15,6 +15,12 @@ class BaseController extends Controller {
 		}
 	}
 
+	public function error() {
+		return View::make('error', [
+			'code' => Input::get('code', '')
+		]);
+	}
+
 	protected function extractTitle($content) {
 		$retval = '';
 		if ($content != null && $content != '') {

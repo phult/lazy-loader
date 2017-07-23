@@ -1,3 +1,11 @@
+$(window).scroll(function() {
+   if($(window).scrollTop() + $(window).height() > $(document).height() - 50) {
+       if (typeof loadMore !== 'undefined') {
+           loadMore();
+       }
+   }
+});
+
 function generateId(length) {
     var retval = "";
     var possible = "0123456789";

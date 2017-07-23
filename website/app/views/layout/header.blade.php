@@ -4,6 +4,7 @@
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span> <i class="fa fa-bars"></i>
+                Menu
             </button>
             <a class="navbar-brand" rel="home" href="/" title="Home page">
                 <img style="max-width:40px; margin-top: -7px;" src="images/logo_original.png">
@@ -14,10 +15,10 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li class="">
-                    <a class="page-scroll" href="/new">Latest</a>
+                    <a class="page-scroll" href="/latest">Latest</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="/history">HISTORY</a>
+                    <a class="page-scroll" href="/history">History</a>
                 </li>
                 <li>
                     <a class="page-scroll" href="/about">How it works?</a>
