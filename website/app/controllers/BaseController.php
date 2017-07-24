@@ -63,6 +63,18 @@ class BaseController extends Controller {
 	}
 
 	protected function viewPost($postId) {
+		// check wheather today the user has viewed the post
+		$todayViews = Action::where('object_id', '=', $this->getUserId())
+			->where('target_type', '=', 'post')
+			->where('type', '=', 'view')
+			->where('target_id', '=', $postId)
+			->where('create_time', '>', date('Y-m-d H:m:s',strtotime('-1 day')))
+			->count();
+		// increment view count
+		if ($todayViews == 0) {
+			Post::find($postId)->increment('views');
+		}
+		// save action
 		$this->action([
 			'type' => 'view',
 			'object_type' => 'guest',
