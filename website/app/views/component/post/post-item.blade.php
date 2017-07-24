@@ -30,9 +30,9 @@
                 'postId' => $post->id
             ])?>" title="<?= $post->title; ?>"><?= $post->title; ?></a>
         <p class="publish">
-            <span><i class="fa fa-thumbs-o-up"></i> <?= $post->comment_number; ?> </span>
+            <span><i class="fa fa-thumbs-o-up"></i> <?= $post->likes; ?> </span>
             <span><i class="fa fa-commenting"></i> <?= $post->comment_number; ?> </span>
-            <span><i class="fa fa-eye"></i> <?= $post->comment_number; ?> </span>
+            <span><i class="fa fa-eye"></i> <?= $post->views; ?> </span>
         </p>
     </div>
 </div>

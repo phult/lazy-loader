@@ -48,9 +48,9 @@
 				<?= nl2br($post->content); ?>
 			</p>
 			<p class="publish">
-				<span><i class="fa fa-thumbs-o-up"></i> <?= $post->comment_number; ?> likes</span>
+				<span><i class="fa fa-thumbs-o-up"></i> <?= $post->likes; ?> likes</span>
 				<span id="comment-btn<?= $post->comment_number > 0 ? '' : '-disabled'; ?>" class="link" style="cursor: pointer"><i class="fa fa-commenting"></i> <?= $post->comment_number; ?> comments</span>
-				<span><i class="fa fa-eye"></i> <?= $post->comment_number; ?> views</span>
+				<span><i class="fa fa-eye"></i> <?= $post->views; ?> views</span>
 			</p>
 		</div>
 	</article>
