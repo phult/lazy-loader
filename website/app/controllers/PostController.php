@@ -87,10 +87,10 @@ class PostController extends BaseController {
 		return View::make('template');
 	}
 
-	private function getFeedPosts($pageId = 0, $pageSize = 10) {
+	private function getFeedPosts($pageId = 0, $pageSize = 20) {
 		return Post::whereNotIn('id', $this->getViewedPosts())
 			->where('content_words', '>', 0)
-			->orderBy('id', 'DESC')
+			->orderBy('post_time', 'DESC')
 			->offset($pageId * $pageSize)->limit($pageSize)->get();
 	}
 
