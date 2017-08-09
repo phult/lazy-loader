@@ -46,6 +46,19 @@
 			?>
 			<p>
 				<?= nl2br($post->content); ?>
+				<?php
+				$resources = json_decode($json, true);
+				$linksStr = $resources["links"];
+				$links = explode(',', $linksStr);
+				foreach ($links as $link) {
+					if ($link == null || $link == '') {
+						continue;
+					}
+				?>
+				<a href="<?=$link?>" target="_blank"><?=$link?></a>
+				<?php
+				}
+				?>
 			</p>
 			<p class="publish">
 				<span><i class="fa fa-thumbs-o-up"></i> <?= $post->likes; ?> likes</span>
