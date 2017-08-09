@@ -42,4 +42,11 @@ class StringUtil {
         }
         return $retval;
     }
+
+    public static function parseContent($content) {
+        return nl2br(preg_replace(
+              "~[[:alpha:]]+://[^<>[:space:]]+[[:alnum:]/]~",
+              "<a href=\"\\0\">\\0</a>",
+              $content));
+    }
 }

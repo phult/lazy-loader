@@ -45,9 +45,9 @@
 			}
 			?>
 			<p>
-				<?= nl2br($post->content); ?>
+				<?= \App\Utils\StringUtil::parseContent($post->content); ?>
 				<?php
-				$resources = json_decode($json, true);
+				$resources = json_decode($post->$resources, true);
 				$linksStr = $resources["links"];
 				$links = explode(',', $linksStr);
 				foreach ($links as $link) {
@@ -55,7 +55,7 @@
 						continue;
 					}
 				?>
-				<a href="<?=$link?>" target="_blank"><?=$link?></a>
+				<a href="<?=urldecode($link)?>" target="_blank"><?=parse_url(urldecode($link), PHP_URL_HOST)?></a>
 				<?php
 				}
 				?>
