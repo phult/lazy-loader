@@ -5,7 +5,9 @@
                 'postId' => $post->id
             ])?>" title="<?= $post->title; ?>">
             <span class="vertical" style="overflow: hidden;display: block;height: 70px;">
-                <img src="<?= $post->image; ?>" alt="<?= $post->title; ?>" style="width: 105px">
+                <img src="<?= ($post->image != null && $post->image != '') ? $post->image : $post->page->avatar; ?>"
+                    alt="<?= $post->title; ?>"
+                    style="width: 105px"/>
             </span>
         </a>
     </div>
