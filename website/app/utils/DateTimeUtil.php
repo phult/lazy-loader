@@ -3,89 +3,35 @@
 namespace App\Utils;
 use \DateTime;
 
-class DateTimeUtil
-{
-    /**
-     *
-     * @param $past string or int
-     * @param $sqlFormat bool
-     * @param $now string time default now
-     * @return string
-     */
-    public static function timeAgo($past, $sqlFormat = true, $now = "now") {
-
-        $secondsPerMinute = 60;
-        $secondsPerHour = $secondsPerMinute * 60;
-        $secondsPerDay = $secondsPerHour * 24;
-        $secondsPerMonth = $secondsPerDay * 30;
-        $secondsPerYear = $secondsPerMonth * 12;
-
-        // sets the default timezone
-        date_default_timezone_set('Asia/Ho_Chi_Minh');
-        $pastTimeStamp = $past;
-        if ($sqlFormat == true) {
-            // finds the past in datetime
-            $pastTimeStamp = strtotime($past);
-        } else {
-
-        }
-        // finds the current datetime
-        $now = strtotime($now);
-        // creates the "time ago" string. This always starts with an "about..."
-        $timeAgo = "";
-        // finds the time difference
-        $timeDifference = $now - $pastTimeStamp;
-        // less than 29secs
-        if ($timeDifference <= 29) {
-            $timeAgo = sprintf('%d giây', $timeDifference);
-        } // more than 29secs and less than 1min29secss
-        else {
-            // between 29secs  and 44mins29secs
-            if ($timeDifference > 29 && $timeDifference <= (($secondsPerMinute * 44) + 29)) {
-                $minutes = ceil($timeDifference / $secondsPerMinute);
-                //"%d minutes"
-                $timeAgo = sprintf(' %d phút', $minutes);
-            } else {
-                // between 44mins30secs and 23hours59mins29secs
-                if ($timeDifference >= (($secondsPerMinute * 44) + 29) &&
-                    $timeDifference <= (($secondsPerHour * 23) + ($secondsPerMinute * 59) + 29)
-                ) {
-                    $hours = ceil($timeDifference / $secondsPerHour);
-
-                    $timeAgo = sprintf('%d giờ', $hours);
-                } else {
-                    return date_format(date_create($past), 'H:i, d/m/Y ');
-                }
-            }
-        }
-        $timeAgo = $timeAgo . ' trước';
-        return trim($timeAgo);
-    }
-
+class DateTimeUtil {
     public static function elapseTime($datetime, $full = false) {
+        $retval = 'just now';
 	    $now = new DateTime();
 	    $ago = new DateTime($datetime);
 	    $diff = $now->diff($ago);
-	    $diff->w = floor($diff->d / 7);
-	    $diff->d -= $diff->w * 7;
-	    $string = array(
-	        'y' => 'year',
-	        'm' => 'month',
-	        'w' => 'week',
-	        'd' => 'day',
-	        'h' => 'hour',
-	        'i' => 'minute',
-	        's' => 'second',
-	    );
-	    foreach ($string as $k => &$v) {
-	        if ($diff->$k) {
-	            $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
-	        } else {
-	            unset($string[$k]);
-	        }
-	    }
-	    if (!$full) $string = array_slice($string, 0, 1);
-	    return $string ? implode(', ', $string) . ' ago' : 'just now';
+        if ($diff->d >= 0) {
+            $diff->w = floor($diff->d / 7);
+    	    $diff->d -= $diff->w * 7;
+    	    $retval = array(
+    	        'y' => 'year',
+    	        'm' => 'month',
+    	        'w' => 'week',
+    	        'd' => 'day',
+    	        'h' => 'hour',
+    	        'i' => 'minute',
+    	        's' => 'second',
+    	    );
+    	    foreach ($retval as $k => &$v) {
+    	        if ($diff->$k) {
+    	            $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
+    	        } else {
+    	            unset($retval[$k]);
+    	        }
+    	    }
+    	    if (!$full) $retval = array_slice($retval, 0, 1);
+    	    $retval = $retval ? implode(', ', $retval) . ' ago' : 'just now';
+        }
+	    return $retval;
 	}
 
     public static function getSlug($text, $allowUnder = false) {
