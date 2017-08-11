@@ -1,5 +1,5 @@
 $(window).scroll(function() {
-   if($(window).scrollTop() + $(window).height() > $(document).height() - 50) {
+   if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
        if (typeof loadMore !== 'undefined') {
            loadMore();
        }

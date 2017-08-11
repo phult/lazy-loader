@@ -10,7 +10,7 @@
             ?>
                 <div class="media col-sm-6" style="border: none; <?= $comment->parent_id != null ? 'padding-left: 30px;' : ''?>">
                     <div class="media-left">
-                        <a class="title" title="<?= $comment->name; ?>">
+                        <a class="title" title="<?= $comment->name; ?>" href="<?= $comment->user_url; ?>">
                             <span style="display: block">
                                 <img src="<?= $comment->avatar; ?>" alt="<?= $comment->name; ?>" style="width: 20px">
                             </span>
@@ -21,6 +21,7 @@
                         if ($comment->name != null) {
                         ?>
                         <a class="link"
+                            href="<?= $comment->user_url; ?>"
                             title="<?= $comment->name; ?>">
                             <?= $comment->name; ?>
                         </a>
