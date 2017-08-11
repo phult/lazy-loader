@@ -42,10 +42,10 @@ class PostController extends BaseController {
 			$this->viewPost($postId);
 			$post->title = $this->extractTitle($post->content);
 		}
-		$suggestionPosts = $this->buildPosts($this->getSugessionPosts($post));
+		$relatedPosts = $this->buildPosts($this->getRelatedPosts($post));
 		return View::make('view', [
 			'post' => $post,
-			'suggestionPosts' => $suggestionPosts
+			'relatedPosts' => $relatedPosts
 		]);
 	}
 
@@ -68,6 +68,12 @@ class PostController extends BaseController {
 			}
 			case 'history': {
 				$posts = $this->getHistoryPosts($pageId);
+				break;
+			}
+			case 'related': {
+				$postId = Input::get('postId', 0);
+				$post = Post::find($postId);
+				$posts = $this->getRelatedPosts($post, $pageId);
 				break;
 			}
 			default:
@@ -101,7 +107,7 @@ class PostController extends BaseController {
 			->offset($pageId * $pageSize)->limit($pageSize)->get();
 	}
 
-	private function getSugessionPosts($post, $pageId = 0, $pageSize = 6) {
+	private function getRelatedPosts($post, $pageId = 0, $pageSize = 6) {
 		return Post::where('page_id', '=', $post->page->id)
 			->whereNotIn('id', $this->getViewedPosts())
 			->where('id', '<>', $post->id)

@@ -55,7 +55,7 @@
 						continue;
 					}
 				?>
-				<br/><a href="<?=urldecode($link)?>" target="_blank"><?=parse_url(urldecode($link), PHP_URL_HOST)?></a>
+				<br/><a href="<?=urldecode($link)?>"><?=parse_url(urldecode($link), PHP_URL_HOST)?></a>
 				<?php
 				}
 				?>
@@ -71,9 +71,10 @@
 	<?php echo View::make('/component/post/comment-list', ['comments' => $post->comments]); ?>
 	<div class="clearfix"></div>
 	<?php echo View::make('/component/post/post-list', [
-		'title' => 'Suggestions',
-		'type' => 'suggestion',
-		'posts' => $suggestionPosts
+		'title' => 'Related posts',
+		'type' => 'related',
+		'posts' => $relatedPosts,
+		'post' => $post
 	]); ?>
 </section>
 <?= HTML::script('slick/slick.min.js'); ?>

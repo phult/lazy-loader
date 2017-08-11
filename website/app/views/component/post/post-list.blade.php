@@ -23,6 +23,7 @@
 <script>
     var page = 0;
     var type = '<?= $type ?>';
+    var postId = <?= isset($post) ? $post->id : -1 ?>;
     var loading = false;
     var eof = false;
 	function loadMore() {
@@ -32,7 +33,8 @@
         loading = true;
         page++;
         $("#post-item-loading").show();
-        $.get("post/load-more?type="+type+"&page="+page, function(data) {
+        var requestURL = "post/load-more?type=" + type + "&page=" + page + "&postId=" + postId;
+        $.get(requestURL, function(data) {
             loading = false;
             $("#post-item-loading").hide();
             if (data.status = 'successful') {
