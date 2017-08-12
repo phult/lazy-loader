@@ -20,7 +20,6 @@
 				?>
 				<a class="title-separator"></a>
 				<a class="time"><?= App\Utils\DateTimeUtil::elapseTime($post->post_time); ?></a>
-
 			</p>
 		</header>
 		<div class="content">
@@ -50,12 +49,24 @@
 				$resources = json_decode($post->resources, true);
 				$linksStr = $resources["links"];
 				$links = explode(',', $linksStr);
+				$linkIdx = 0;
 				foreach ($links as $link) {
 					if ($link == null || $link == '') {
 						continue;
 					}
+					if ($linkIdx == 0) {
+					?>
+				<br/>See more in 
+					<?php
+					}
 				?>
-				<br/><a href="<?=urldecode($link)?>"><?=parse_url(urldecode($link), PHP_URL_HOST)?></a>
+				<a href="<?=urldecode($link)?>"><?=parse_url(urldecode($link), PHP_URL_HOST)?></a>
+				<?php
+					$linkIdx++;
+				}
+				if ($post->url != null && $post->url != '' ) {
+				?>
+				<br/>Open in <a href="<?=$post->url?>"><?=parse_url($post->url, PHP_URL_HOST)?></a>
 				<?php
 				}
 				?>
