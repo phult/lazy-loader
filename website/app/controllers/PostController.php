@@ -40,7 +40,7 @@ class PostController extends BaseController {
 		$post = Post::find($postId);
 		if ($post != null) {
 			$this->viewPost($postId);
-			$post->title = $this->extractTitle($post->content);
+			$this->buildPost($post);
 		}
 		$relatedPosts = $this->buildPosts($this->getRelatedPosts($post));
 		return View::make('view', [

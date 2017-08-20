@@ -9,6 +9,11 @@ class Post extends Eloquent{
 
 	public $timestamps = false;
 	protected $guarded = array("id");
+
+	const TYPE_ENTRY = 'entry';
+	const TYPE_LINK = 'link';
+	const TYPE_VIDEO = 'video';
+	const TYPE_IMAGE = 'image';
 	/**
 	 * The database table used by the model.
 	 *

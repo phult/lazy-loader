@@ -1,5 +1,4 @@
 <?php
-
 class BaseController extends Controller {
 
 	/**
@@ -35,15 +34,40 @@ class BaseController extends Controller {
 
 	protected function buildPosts($posts) {
 		foreach ($posts as $post) {
-			$post->title = $this->collageString($this->extractTitle($post->content), 100);
-			//$post->title = $this->extractTitle($post->content);
-			$post->image = '';
-			if ($post->images != null && $post->images != '') {
-				$imageSpliter = explode(',', $post->images);
-				$post->image = $imageSpliter[0];
-			}
+			$this->buildPost($post);
 		}
 		return $posts;
+	}
+
+	protected function buildPost($post) {
+		$post->title = $this->collageString($this->extractTitle($post->content), 100);
+		$post->image = $this->buildPostImage($post);
+		$post->type = $this->buildPostType($post);
+	}
+
+	protected function buildPostImage($post) {
+		$retval = '';
+		if ($post->images != null && $post->images != '') {
+			$imageSpliter = explode(',', $post->images);
+			$retval = $imageSpliter[0];
+		}
+		return $retval;
+	}
+
+	protected function buildPostType($post) {
+		$retval = Post::TYPE_ENTRY;
+		if ($post->resources != null) {
+			$resources = json_decode($post->resources);
+
+			if ($resources->links != '') {
+				$retval = Post::TYPE_LINK;
+			} else if ($resources->videos === NULL || $resources->videos != '') {
+				$retval = Post::TYPE_VIDEO;
+			} else if ($resources->images != '' && count(explode(',', $resources->images)) > 1) {
+				$retval = Post::TYPE_IMAGE;
+			}
+		}
+		return $retval;
 	}
 
 	public function collageString($str, $limitedWord) {

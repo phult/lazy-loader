@@ -8,6 +8,21 @@
                 <img src="<?= ($post->image != null && $post->image != '') ? $post->image : $post->page->avatar; ?>"
                     alt="<?= $post->title; ?>"
                     style="width: 105px"/>
+                <?php
+                switch ($post->type) {
+                    case Post::TYPE_LINK:
+                        ?><i class="post-type-icon glyphicon glyphicon-link"></i><?php
+                        break;
+                    case Post::TYPE_IMAGE:
+                        ?><i class="post-type-icon glyphicon glyphicon-camera"></i><?php
+                        break;
+                    case Post::TYPE_VIDEO:
+                        ?><i class="post-type-icon glyphicon glyphicon-play-circle"></i><?php
+                        break;
+                    default:
+                        break;
+                }
+                ?>
             </span>
         </a>
     </div>
