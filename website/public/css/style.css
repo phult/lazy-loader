@@ -587,7 +587,7 @@ aside .block-title span {
 }
 a.link {
     font-size: 13px;
-    color: #0dd3bb;
+    color: chocolate;
 }
 a.time {
     font-size: 13px;
@@ -677,7 +677,7 @@ footer
 /* post type icon */
 .post-type-icon {
     position: absolute;
-    bottom: 5px;
+    bottom: 11px;
     left: 5px;
     color: #fff;
     top: auto;

@@ -16,13 +16,13 @@
 					<?php
 	                switch ($post->type) {
 	                    case Post::TYPE_LINK:
-	                        ?><i class="post-type-icon glyphicon glyphicon-link" style="color: coral"></i>&nbsp <?php
+	                        ?><i class="glyphicon glyphicon-link" style="color: black"></i>&nbsp <?php
 	                        break;
 	                    case Post::TYPE_IMAGE:
-	                        ?><i class="post-type-icon glyphicon glyphicon-camera" style="color: coral"></i>&nbsp <?php
+	                        ?><i class="glyphicon glyphicon-camera" style="color: black"></i>&nbsp <?php
 	                        break;
 	                    case Post::TYPE_VIDEO:
-	                        ?><i class="glyphicon glyphicon-play-circle" style="color: coral"></i>&nbsp <?php
+	                        ?><i class="glyphicon glyphicon-play-circle" style="color: black"></i>&nbsp <?php
 	                        break;
 	                    default:
 	                        break;
