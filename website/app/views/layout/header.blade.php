@@ -30,13 +30,13 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li class="">
-                    <a class="page-scroll" href="/latest"><i class="glyphicon glyphicon-globe"></i> Latest</a>
+                    <a class="page-scroll" href="/latest"><i class="glyphicon glyphicon-globe"></i>&nbsp&nbsp Latest posts</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="/history"><i class="glyphicon glyphicon-time"></i> History view</a>
+                    <a class="page-scroll" href="/history"><i class="glyphicon glyphicon-time"></i>&nbsp&nbsp History view</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="/about"><i class="glyphicon glyphicon-baby-formula"></i> How it works?</a>
+                    <a class="page-scroll" href="/about"><i class="glyphicon glyphicon-baby-formula"></i>&nbsp&nbsp About us</a>
                 </li>
             </ul>
             <!--form class="navbar-form navbar-right" role="search" method="get" id="searchform" action="">

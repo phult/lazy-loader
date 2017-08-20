@@ -18,12 +18,8 @@
 .navbar-toggle {
     border: none;
 }
-.btn, .navbar-default .nav>li>a {
-    font-family: Lato,Helvetica,Arial,sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 11px;
-    color: black;
+.navbar-nav>li>a {
+    font-weight: bold;
 }
 .navbar-toggle .icon-bar {
     height: 3px;
