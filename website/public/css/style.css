@@ -29,6 +29,7 @@
 }
 body {
     margin: 0 auto;
+    line-height: 1.5;
 }
 
 header a {
@@ -659,6 +660,7 @@ footer
     -o-transition: all 350ms ease-out;
     transition: all 350ms ease-out
 }
+/* slider view */
 .gallery {
     text-align: center;vertical-align: middle;
 }
@@ -669,6 +671,6 @@ footer
 }
 .gallery img {
     margin: auto;
-    width: 80%;
+    width: 100%;
     vertical-align: middle;
 }

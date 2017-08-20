@@ -99,7 +99,6 @@
 			slidesToScroll: 1,
 			autoplay: true,
 			autoplaySpeed: 500000,
-			centerMode: true
 		});
 		$("#comment-btn").click(function() {
 			$("#comment").toggle();
