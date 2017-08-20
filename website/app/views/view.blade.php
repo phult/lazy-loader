@@ -56,7 +56,7 @@
 					}
 					if ($linkIdx == 0) {
 					?>
-				<br/>See more in 
+				<br/>See more:
 					<?php
 					}
 				?>
