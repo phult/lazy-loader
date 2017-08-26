@@ -15,6 +15,9 @@
 .navbar-inverse .navbar-brand {
     color: rgba(255, 255, 255, 0.75);
 }
+.navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
+    background-color: inherit;
+}
 .navbar-toggle {
     border: none;
     margin-right: 0;
@@ -185,12 +188,15 @@ a:hover, a:active, a:focus {
     padding-left: 75px;
 }
 
-
 /*search*/
-#main-search {
-    margin: 8px auto;
-    float: right;
-    position: relative;
+#search-button {
+    padding-top: 0;
+    padding-bottom: 0;
+    font-size: 22px;
+    color: rgba(255, 255, 255, 0.75);
+}
+#search-button .glyphicon {
+    top: 4px;
 }
 
 /* ================ Menu ================*/

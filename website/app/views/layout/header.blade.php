@@ -15,12 +15,12 @@
             </a-->
             <a  class="navbar-brand"
                 href="/"
-                style="text-align: center; float: none; line-height: 50px">
-                <img style="max-width:35px; margin-top: -6px;display: inherit" src="images/logo_original.png">
+                style="text-align: center; float: none; line-height: 49px">
+                <img style="max-width:35px; margin-top: -2px;display: inherit" src="images/logo_original.png">
             </a>
-            <a class="navbar-brand pull-right" title="Search">
+            <button id="search-button" type="button" class="navbar-toggle pull-right" title="Search">
                 <i class="glyphicon glyphicon-search"></i>
-            </a>
+            </button>
             <!--a class="navbar-brand pull-right" href="/history" title="History">
                 <i class="glyphicon glyphicon-time"></i>
             </a-->
