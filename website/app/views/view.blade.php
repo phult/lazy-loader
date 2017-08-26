@@ -39,12 +39,11 @@
 		</header>
 		<div class="content">
 			<?php
-			if ($post->images != null && $post->images != '') {
-				$imageSpliter = explode(',', $post->images);
+			if (count($post->images) > 0) {
 				?>
 				<div class="gallery">
 					<?php
-					foreach ($imageSpliter as $imageURL) {
+					foreach ($post->images as $imageURL) {
 						$fileExtension = App\Utils\StringUtil::getFileExtension($imageURL);
 						if ($fileExtension == 'gif' || $imageURL == '') {
 							continue;
