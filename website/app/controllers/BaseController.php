@@ -42,6 +42,9 @@ class BaseController extends Controller {
 	protected function buildPost($post) {
 		$post->title = $this->collageString($this->extractTitle($post->content), 100);
 		$post->image = $this->buildPostImage($post);
+		$post->images = $this->buildPostImages($post);
+		$post->links = $this->buildPostSharedLink($post);
+		$post->videos = $this->buildPostVideos($post);
 		$post->type = $this->buildPostType($post);
 	}
 
@@ -53,19 +56,45 @@ class BaseController extends Controller {
 		}
 		return $retval;
 	}
+	protected function buildPostSharedLink($post) {
+		$retval = [];
+		if ($post->resources != null) {
+			$resources = json_decode($post->resources);
+			if ($resources->links != '') {
+				$retval = explode(',', $resources->links);
+			}
+		}
+		return $retval;
+	}
+	protected function buildPostVideos($post) {
+		$retval = [];
+		if ($post->resources != null) {
+			$resources = json_decode($post->resources);
+			if ($resources->videos === NULL || $resources->videos != '') {
+				$retval = explode(',', $resources->videos);
+			}
+		}
+		return $retval;
+	}
+	protected function buildPostImages($post) {
+		$retval = [];
+		if ($post->resources != null) {
+			$resources = json_decode($post->resources);
+			if ($resources->images != '') {
+				$retval = explode(',', $resources->images);
+			}
+		}
+		return $retval;
+	}
 
 	protected function buildPostType($post) {
 		$retval = Post::TYPE_ENTRY;
-		if ($post->resources != null) {
-			$resources = json_decode($post->resources);
-
-			if ($resources->links != '') {
-				$retval = Post::TYPE_LINK;
-			} else if ($resources->videos === NULL || $resources->videos != '') {
-				$retval = Post::TYPE_VIDEO;
-			} else if ($resources->images != '' && count(explode(',', $resources->images)) > 1) {
-				$retval = Post::TYPE_IMAGE;
-			}
+		if (count($post->links) > 0) {
+			$retval = Post::TYPE_LINK;
+		} else if (count($post->videos) > 0) {
+			$retval = Post::TYPE_VIDEO;
+		} else if (count($post->images) > 1) {
+			$retval = Post::TYPE_IMAGE;
 		}
 		return $retval;
 	}

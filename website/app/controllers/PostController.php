@@ -42,6 +42,9 @@ class PostController extends BaseController {
 			$this->viewPost($postId);
 			$this->buildPost($post);
 		}
+		if ($post->type == Post::TYPE_LINK) {
+			return Redirect::to($post->links[0]);
+		}
 		$relatedPosts = $this->buildPosts($this->getRelatedPosts($post));
 		return View::make('view', [
 			'post' => $post,

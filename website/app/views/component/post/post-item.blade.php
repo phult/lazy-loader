@@ -1,9 +1,9 @@
+<?php
+$href = URL::route('post:view', ['postSlug' => App\Utils\StringUtil::getSlug($post->title), 'postId' => $post->id]);
+?>
 <div class="media col-sm-6">
     <div class="media-left">
-        <a class="title" href="<?= URL::route('post:view', [
-                'postSlug' => App\Utils\StringUtil::getSlug($post->title),
-                'postId' => $post->id
-            ])?>" title="<?= $post->title; ?>">
+        <a class="title" href="<?= $href; ?>" target="<?= $post->type == Post::TYPE_LINK ? '_blank' : ''?>" title="<?= $post->title; ?>">
             <span class="vertical" style="overflow: hidden;display: block;height: 70px;">
                 <img src="<?= ($post->image != null && $post->image != '') ? $post->image : $post->page->avatar; ?>"
                     alt="<?= $post->title; ?>"
@@ -42,10 +42,7 @@
         <a class="title-separator"></a>
         <a class="time"><?= App\Utils\DateTimeUtil::elapseTime($post->post_time); ?></a>
         <br/>
-        <a class="title" href="<?= URL::route('post:view', [
-                'postSlug' => App\Utils\StringUtil::getSlug($post->title),
-                'postId' => $post->id
-            ])?>" title="<?= $post->title; ?>"><?= $post->title; ?></a>
+        <a class="title" href="<?= $href; ?>" target="<?= $post->type == Post::TYPE_LINK ? '_blank' : ''?>" title="<?= $post->title; ?>"><?= $post->title; ?></a>
         <p class="publish">
             <span><i class="fa fa-thumbs-o-up"></i> <?= $post->likes; ?> </span>
             <span><i class="fa fa-commenting"></i> <?= $post->comment_number; ?> </span>
