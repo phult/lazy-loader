@@ -22,8 +22,9 @@
 
 <script>
     var page = 0;
-    var type = '<?= $type ?>';
+    var type = "<?= $type ?>";
     var postId = <?= isset($post) ? $post->id : -1 ?>;
+    var keyword = "<?= isset($keyword) ? $keyword : '' ?>";
     var loading = false;
     var eof = false;
 	function loadMore() {
@@ -33,7 +34,7 @@
         loading = true;
         page++;
         $("#post-item-loading").show();
-        var requestURL = "post/load-more?type=" + type + "&page=" + page + "&postId=" + postId;
+        var requestURL = "post/load-more?type=" + type + "&page=" + page + "&postId=" + postId + "&keyword=" + keyword;
         $.get(requestURL, function(data) {
             loading = false;
             $("#post-item-loading").hide();

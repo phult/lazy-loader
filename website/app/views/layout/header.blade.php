@@ -49,7 +49,7 @@
             </form-->
         </div>
         <div class="collapse navbar-collapse" id="search-bar">
-            <form class="navbar-form" role="search">
+            <form class="navbar-form" role="search" action="<?= URL::route('post:search'); ?>">
     			<div class="input-group">
     				<input id="search-input" name="s" type="text" class="form-control" placeholder="Search ...">
     				<span class="input-group-btn">

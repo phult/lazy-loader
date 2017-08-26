@@ -36,6 +36,19 @@ class PostController extends BaseController {
 		]);
 	}
 
+	public function search() {
+		$posts = [];
+		$keyword = Input::get('s', '');
+		if ($keyword != '') {
+
+			$posts = $this->buildPosts($this->searchPosts($keyword));
+
+		}
+		return View::make('post-search', [
+			'posts' => $posts,
+		]);
+	}
+
 	public function view($postSlug, $postId) {
 		$post = Post::find($postId);
 		if ($post != null) {
@@ -79,6 +92,11 @@ class PostController extends BaseController {
 				$posts = $this->getRelatedPosts($post, $pageId);
 				break;
 			}
+			case 'search': {
+				$keyword = Input::get('keyword', '');
+				$posts = $this->searchPosts($keyword, $pageId);
+				break;
+			}
 			default:
 				$retval['status'] = 'fail';
 				break;
@@ -94,6 +112,12 @@ class PostController extends BaseController {
 
 	public function template() {
 		return View::make('template');
+	}
+
+	private function searchPosts($keyword, $pageId = 0, $pageSize = 10) {
+		return Post::whereRaw("MATCH(name,content) AGAINST('" . $keyword . "' IN NATURAL LANGUAGE MODE)")
+			->where('content_words', '>', 0)
+			->offset($pageId * $pageSize)->limit($pageSize)->get();
 	}
 
 	private function getFeedPosts($pageId = 0, $pageSize = 20) {
