@@ -9,17 +9,17 @@ class DateTimeUtil {
 	    $now = new DateTime();
 	    $ago = new DateTime($datetime);
 	    $diff = $now->diff($ago);
-        if ($diff->d >= 0) {
+        if ($now > $ago && $diff->d >= 0) {
             $diff->w = floor($diff->d / 7);
     	    $diff->d -= $diff->w * 7;
     	    $retval = array(
-    	        'y' => 'year',
-    	        'm' => 'month',
+    	        'y' => 'yr',
+    	        'm' => 'mon',
     	        'w' => 'week',
     	        'd' => 'day',
-    	        'h' => 'hour',
-    	        'i' => 'minute',
-    	        's' => 'second',
+    	        'h' => 'hr',
+    	        'i' => 'min',
+    	        's' => 's',
     	    );
     	    foreach ($retval as $k => &$v) {
     	        if ($diff->$k) {
@@ -29,7 +29,7 @@ class DateTimeUtil {
     	        }
     	    }
     	    if (!$full) $retval = array_slice($retval, 0, 1);
-    	    $retval = $retval ? implode(', ', $retval) . ' ago' : 'just now';
+    	    $retval = $retval ? implode(', ', $retval) : 'just now';
         }
 	    return $retval;
 	}
