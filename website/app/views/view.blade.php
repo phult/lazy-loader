@@ -41,7 +41,7 @@
 			<?php
 			if (count($post->images) > 0) {
 				?>
-				<div class="gallery">
+				<div class="gallery"> 
 					<?php
 					foreach ($post->images as $imageURL) {
 						$fileExtension = App\Utils\StringUtil::getFileExtension($imageURL);

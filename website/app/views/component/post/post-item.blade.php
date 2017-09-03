@@ -31,7 +31,7 @@ $href = URL::route('post:view', ['postSlug' => App\Utils\StringUtil::getSlug($po
         if ($post->page != null) {
         ?>
         <a class="link"
-            href="<?= $post->page->url; ?>"
+            href="<?= URL::route('page:view', ['pageSlug' => App\Utils\StringUtil::getSlug($post->page->name), 'pageId' => $post->page->id]); ?>"
             target="_blank"
             title="<?= $post->page->name; ?>">
             <?= $post->page->name; ?>

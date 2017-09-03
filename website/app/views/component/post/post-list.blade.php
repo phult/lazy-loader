@@ -21,9 +21,10 @@
 </div>
 
 <script>
-    var page = 0;
+    var paginationId = 0;
     var type = "<?= $type ?>";
     var postId = <?= isset($post) ? $post->id : -1 ?>;
+    var pageId = <?= isset($page) ? $page->id : -1 ?>;
     var keyword = "<?= isset($keyword) ? $keyword : '' ?>";
     var loading = false;
     var eof = false;
@@ -32,9 +33,9 @@
             return;
         }
         loading = true;
-        page++;
+        paginationId++;
         $("#post-item-loading").show();
-        var requestURL = "post/load-more?type=" + type + "&page=" + page + "&postId=" + postId + "&keyword=" + keyword;
+        var requestURL = "post/load-more?" + buildLoadMoreRequestParams();
         $.get(requestURL, function(data) {
             loading = false;
             $("#post-item-loading").hide();
@@ -47,4 +48,17 @@
             }
         });
 	}
+    function buildLoadMoreRequestParams() {
+        var retval = "type=" + type + "&page=" + paginationId;
+        if (postId > 0) {
+            retval += "&postId=" + postId;
+        }
+        if (keyword != '') {
+            retval += "&keyword=" + keyword;
+        }
+        if (pageId > 0) {
+            retval += "&pageId=" + pageId;
+        }
+        return retval;
+    }
 </script>

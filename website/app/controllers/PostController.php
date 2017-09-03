@@ -36,13 +36,21 @@ class PostController extends BaseController {
 		]);
 	}
 
+	public function viewPage($pageSlug, $pageId) {
+		$posts = [];
+		$posts = $this->buildPosts($this->getPagePosts($pageId));
+		$page = Page::find($pageId);
+		return View::make('post-page', [
+			'posts' => $posts,
+			'page' => $page,
+		]);
+	}
+
 	public function search() {
 		$posts = [];
 		$keyword = Input::get('s', '');
 		if ($keyword != '') {
-
 			$posts = $this->buildPosts($this->searchPosts($keyword));
-
 		}
 		return View::make('post-search', [
 			'posts' => $posts,
@@ -72,29 +80,34 @@ class PostController extends BaseController {
 		$result = '';
 		$posts = [];
 		$type = Input::get('type', 'feed');
-		$pageId = Input::get('page', 0);
+		$paginationId = Input::get('page', 0);
 		switch ($type) {
 			case 'feed': {
-				$posts = $this->getFeedPosts($pageId);
+				$posts = $this->getFeedPosts($paginationId);
 				break;
 			}
 			case 'latest': {
-				$posts = $this->getLatestPosts($pageId);
+				$posts = $this->getLatestPosts($paginationId);
 				break;
 			}
 			case 'history': {
-				$posts = $this->getHistoryPosts($pageId);
+				$posts = $this->getHistoryPosts($paginationId);
 				break;
 			}
 			case 'related': {
 				$postId = Input::get('postId', 0);
 				$post = Post::find($postId);
-				$posts = $this->getRelatedPosts($post, $pageId);
+				$posts = $this->getRelatedPosts($post, $paginationId);
 				break;
 			}
 			case 'search': {
 				$keyword = Input::get('keyword', '');
-				$posts = $this->searchPosts($keyword, $pageId);
+				$posts = $this->searchPosts($keyword, $paginationId);
+				break;
+			}
+			case 'page': {
+				$pageId = Input::get('pageId', 0);
+				$posts = $this->getPagePosts($pageId, $paginationId);
 				break;
 			}
 			default:
@@ -114,39 +127,48 @@ class PostController extends BaseController {
 		return View::make('template');
 	}
 
-	private function searchPosts($keyword, $pageId = 0, $pageSize = 10) {
+	private function searchPosts($keyword, $paginationId = 0, $paginationSize = 10) {
 		return Post::whereRaw("MATCH(name,content) AGAINST('" . $keyword . "' IN NATURAL LANGUAGE MODE)")
 			->where('content_words', '>', 0)
-			->offset($pageId * $pageSize)->limit($pageSize)->get();
+			->offset($paginationId * $paginationSize)->limit($paginationSize)->get();
 	}
 
-	private function getFeedPosts($pageId = 0, $pageSize = 20) {
+	private function getFeedPosts($paginationId = 0, $paginationSize = 20) {
 		return Post::whereNotIn('id', $this->getViewedPosts())
 			->where('content_words', '>', 0)
 			->orderBy('post_time', 'DESC')
-			->offset($pageId * $pageSize)->limit($pageSize)->get();
+			->offset($paginationId * $paginationSize)->limit($paginationSize)->get();
 	}
 
-	private function getLatestPosts($pageId = 0, $pageSize = 10) {
+	private function getLatestPosts($paginationId = 0, $paginationSize = 10) {
 		return Post::whereNotIn('id', $this->getViewedPosts())
 			->where('content_words', '>', 0)
 			->orderBy('post_time', 'DESC')
-			->offset($pageId * $pageSize)->limit($pageSize)->get();
+			->offset($paginationId * $paginationSize)->limit($paginationSize)->get();
 	}
 
-	private function getRelatedPosts($post, $pageId = 0, $pageSize = 6) {
+	private function getRelatedPosts($post, $paginationId = 0, $paginationSize = 6) {
 		return Post::where('page_id', '=', $post->page->id)
 			->whereNotIn('id', $this->getViewedPosts())
 			->where('id', '<>', $post->id)
 			->orderBy('post_time', 'DESC')
 			->where('content_words', '>', 0)
-			->offset($pageId * $pageSize)->limit($pageSize)->get();
+			->offset($paginationId * $paginationSize)->limit($paginationSize)->get();
 	}
-	private function getHistoryPosts($pageId = 0, $pageSize = 10) {
+
+	private function getHistoryPosts($paginationId = 0, $paginationSize = 10) {
 		return Post::join('action', 'action.target_id', '=', 'post.id')
 			->where('action.object_id', '=', $this->getUserId())
 			->where('action.type', '=', 'view')
 			->orderBy('action.create_time', 'DESC')
-			->offset($pageId * $pageSize)->limit($pageSize)->get(['post.*']);
+			->offset($paginationId * $paginationSize)->limit($paginationSize)->get(['post.*']);
+	}
+
+	private function getPagePosts($pageId, $paginationId = 0, $paginationSize = 10) {
+		return Post::whereNotIn('id', $this->getViewedPosts())
+			->where('page_id', '=', $pageId)
+			->where('content_words', '>', 0)
+			->orderBy('post_time', 'DESC')
+			->offset($paginationId * $paginationSize)->limit($paginationSize)->get();
 	}
 }
